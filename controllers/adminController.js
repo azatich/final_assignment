@@ -4,19 +4,18 @@ const bcrypt = require('bcrypt');
 const adminController = {
 
     getAdminPage: async (req, res) => {
-        username = req.session.user.username;
         const users = await User.find({})
         users.forEach(user => { 
             user.registrationDate = user.registrationDate.toLocaleString('en-US', {timeZone: 'Asia/Almaty'})
             user.lastActive = user.lastActive.toLocaleString('en-US', {timeZone: 'Asia/Almaty'})
         })
-        await res.render('pages/admin_panel/adminPanel', {users: users, username: username})
+        await res.render('pages/admin_panel/adminPanel', {users: users, user: req.session.user})
     },
 
     getPostPage: async (req, res) => {
         try {
             const posts = await Post.find();
-            await res.render('pages/main_page/posts', {posts: posts, user: req.session.user})
+            await res.render('pages/main_page/posts', {posts: posts, user: req.session.user, currentLang: req.i18n.language})
         } catch (error) {
             res.status(500).json({ message: error.message });
         }

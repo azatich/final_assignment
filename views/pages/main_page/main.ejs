@@ -27,7 +27,7 @@
               <li class="nav-item">
                 <a class="nav-link mx-2" href="/posts"><%= t('posts') %></a>
               </li>
-              <% if (isAdmin) { %>
+              <% if (user.isAdmin) { %>
                 <li class="nav-item">
                     <a class="nav-link mx-2" href="/adminPanel"><%= t('adminPanel') %></a>
                 </li>
@@ -43,8 +43,8 @@
             </div>
     
             <div class="user-info ml-3">
-                <% if (username) { %>
-                    <span class="username mr-2"><%= username %></span>
+                <% if (user.username) { %>
+                    <span class="username mr-2"><%= user.username %></span>
                     <a href="/logout" class="logout-link"><%= t('logout') %></a>
                 <% } else { %>
                     <a href="/login" class="auth-link mr-2"><%= t('login') %> </a>

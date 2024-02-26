@@ -22,5 +22,17 @@
     "search": "Іздеу",
     "year": "Жыл",
     "noActorInfoAvailable": "Актер туралы ақпарат табылмады.",
-    "noMoviesFound": "Фильмдер табылмады."
+    "noMoviesFound": "Фильмдер табылмады.",
+
+    "addPost": "Пост салу",
+    "delete": "Өшіру",
+    "edit": "Өңдеу",
+    "postedOn": "Салынған күн",
+    "editedOn": "Өңделген күн",
+    "writeComment": "Пікір жазу",
+    "comment" : "Пікір қалдыру",
+    "close": "Жабу",
+    "newTitle": "Жаңа тақырып",
+    "newImage": "Жаңа сурет",
+    "newContent": "Жаңа мазмұн"
 }

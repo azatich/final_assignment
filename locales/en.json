@@ -22,6 +22,17 @@
     "search": "Search",
     "year": "Year",
     "noActorInfoAvailable": "No actor information available.",
-    "noMoviesFound": "No movies found."
+    "noMoviesFound": "No movies found.",
+
+    "addPost": "Add Post",
+    "delete": "Delete",
+    "edit": "Edit",
+    "postedOn": "Posted on",
+    "editedOn": "Edited on",
+    "writeComment": "Write Comment",
+    "comment" : "Comment",
+    "close": "Закрыть",
+    "newTitle": "New Title",
+    "newImage": "New Image",
+    "newContent": "New Content"
 }
-  

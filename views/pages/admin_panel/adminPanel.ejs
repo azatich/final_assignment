@@ -20,8 +20,8 @@
             </ul>
         </div>
         <div class="top-right">
-            <% if (username) { %>
-                <%= username %> <a href="/logout">Log out</a>
+            <% if (user.username) { %>
+                <%= user.sername %> <a href="/logout">Log out</a>
             <% } else { %>
                 <a href="/login">Login</a> | <a href="/registration">Register</a>
             <% } %>

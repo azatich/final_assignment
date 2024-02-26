@@ -3,8 +3,6 @@ const axios = require('axios');
 const actorController = {
     getActorsPage: async (req, res) => {
         try {
-            let username = req.session.user ? req.session.user.username : null;
-            let isAdmin = req.session.user ? req.session.user.isAdmin : false;
             let actorInfo = null;
 
             if (req.query.actorInfo) {
@@ -14,7 +12,7 @@ const actorController = {
                 actorInfo = req.session.actorInfo;
             }
 
-            res.render('pages/main_page/actors', { username: username, isAdmin: isAdmin, actorInfo: actorInfo });
+            res.render('pages/main_page/actors', { user: req.session.user, actorInfo: actorInfo, currentLang: req.i18n.language });
         } catch (error) {
             console.error('Error rendering actors page:', error.message);
             res.status(500).send('Internal Server Error');

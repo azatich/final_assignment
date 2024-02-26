@@ -51,8 +51,38 @@ body {
     text-decoration: none; 
     margin-left: 10px;
 }
-
 .top-right a:hover {
+    text-decoration: underline;
+}
+.language-switcher {
+    display: flex;
+}
+.lang-link {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.lang-link.active, .lang-link:hover {
+    color: #e50914;
+    text-decoration: underline;
+}
+
+.user-info {
+    color: #fff;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.logout-link, .auth-link {
+    color: #e50914;
+    text-decoration: none;
+}
+
+.logout-link:hover, .auth-link:hover {
     text-decoration: underline;
 }
 

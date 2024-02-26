@@ -26,7 +26,7 @@
               <li class="nav-item">
                 <a class="nav-link mx-2" href="/posts"><%= t('posts') %></a>
               </li>
-              <% if (isAdmin) { %>
+              <% if (user.isAdmin) { %>
                 <li class="nav-item">
                     <a class="nav-link mx-2" href="/adminPanel"><%= t('adminPanel') %></a>
                 </li>
@@ -34,13 +34,23 @@
             </ul>
           </div>
         </div>
-        <div class="top-right">
-            <% if (username) { %>
-                <%= username %>
-            <% } else { %>
-                <a href="/login"><%= t('login') %></a> | <a href="/registration"><%= t('register') %></a>
-            <% } %>
-            <a href="/logout"><%= t('logout') %></a>
+        <div class="top-right d-flex align-items-center">
+            <div class="language-switcher mr-3">
+                <a href="/change-lang/kz" class="lang-link <%= currentLang === 'kz' ? 'active' : '' %>">KZ</a>
+                <a href="/change-lang/en" class="lang-link <%= currentLang === 'en' ? 'active' : '' %>">EN</a>
+                <a href="/change-lang/ru" class="lang-link <%= currentLang === 'ru' ? 'active' : '' %>">RU</a>
+            </div>
+    
+            <div class="user-info ml-3">
+                <% if (user.username) { %>
+                    <span class="username mr-2"><%= user.username %></span>
+                    <a href="/logout" class="logout-link"><%= t('logout') %></a>
+                <% } else { %>
+                    <a href="/login" class="auth-link mr-2"><%= t('login') %> </a>
+                    <span>|</span>
+                    <a href="/registration" class="auth-link ml-2"><%= t('register') %></a>
+                <% } %>
+            </div>
         </div>
     </nav>
 
