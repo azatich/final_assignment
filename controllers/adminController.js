@@ -55,7 +55,22 @@ const adminController = {
     },
 
     editPost: async (req, res) => {
-        
+        const postId = req.params.id;
+        const { title, image1, image2, image3, content } = req.body;
+        try {
+            const post = await Post.findById(postId);
+            if (title) post.title = title;
+            if (image1) post.images[0] = image1;
+            if (image2) post.images[1] = image2;
+            if (image3) post.images[2] = image3;
+            if (content) post.content = content;
+            post.lastUpdateDate = new Date();
+            await post.save();
+            res.redirect('/posts');
+        } catch (error) {
+            console.error('Error updating the post:', error);
+            res.status(500).send('An error occurred while updating the post');
+        }
     },
 
     addUser: async (req, res) => {

@@ -26,8 +26,8 @@ router.get('/lastActive', authenticateUser, adminController.getlastActive);
 
 router.get('/posts', authenticateUser, adminController.getPostPage)
 router.post('/posts', authenticateUser, adminController.addPost)
-router.post('/posts/delete/:id', authenticateUser, adminController.deletePost);
-router.post('posts/edit/:id', authenticateUser, adminController.editPost)
+router.delete('/posts/delete/:id', authenticateUser, adminController.deletePost);
+router.put('/posts/edit/:id', authenticateUser, adminController.editPost)
 
 router.post('/comment/:id', authenticateUser, userController.comment)
 

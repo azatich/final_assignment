@@ -20,6 +20,7 @@ const postSchema = new mongoose.Schema({
     images: [String],
     content: String,
     postedDate: { type: Date, default: null },
+    lastUpdateDate: { type: Date, default: null },
     comments: [{
         username: String,
         comment: String

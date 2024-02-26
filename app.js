@@ -6,6 +6,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('./routes/router');
+const methodOverride = require('method-override');
 require('dotenv').config({path: './.env'});
 const connectDB = async () => {
     try {
@@ -24,6 +25,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
@@ -57,10 +59,10 @@ app.use((req, res, next) => {
     next();
 });
 // To display detected language
-app.use((req, res, next) => {
-    console.log('Detected language:', req.language);
-    next();
-});
+// app.use((req, res, next) => {
+//     console.log('Detected language:', req.language);
+//     next();
+// });
 
 app.use('/', router);
 

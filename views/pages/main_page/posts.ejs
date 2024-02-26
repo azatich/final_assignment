@@ -46,16 +46,29 @@
         </div>
     </nav>
     <% if (isAdmin) { %>
-        <form action="/posts" method="post">
-            <input type="text" name="title" placeholder="Title">
-            <input type="text" name="image1" placeholder="Image URL 1">
-            <input type="text" name="image2" placeholder="Image URL 2">
-            <input type="text" name="image3" placeholder="Image URL 3">
-            <textarea name="content" placeholder="Content"></textarea>
-            <button type="submit">Add Post</button>
-        </form>
-        
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPostModal">
+            Add Post
+        </button>
     <% } %>
+    <div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-labelledby="addPostModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="/posts" method="post">
+                    <div class="modal-body">
+                        <input type="text" name="title" class="form-control mb-2" placeholder="Title">
+                        <input type="text" name="image1" class="form-control mb-2" placeholder="Image URL 1">
+                        <input type="text" name="image2" class="form-control mb-2" placeholder="Image URL 2">
+                        <input type="text" name="image3" class="form-control mb-2" placeholder="Image URL 3">
+                        <textarea name="content" class="form-control" placeholder="Content"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Post</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <ul class="post">
         <% posts.forEach((post, index) => { %>
@@ -63,36 +76,76 @@
                 <% if (isAdmin) { %>
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-three-dots-vertical" data-toggle="dropdown"></i>
+                            <i class="bi bi-three-dots-vertical"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <form action="/posts/delete/<%= post._id %>?_method=delete" method="post">
-                                <button type="submit" class="dropdown-item delete-post-button" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
-                            </form>
-                            <form action="/posts/edit/<%= post._id %>" method="post">
-                                <button type="submit" class="dropdown-item edit-post-button" onclick="return confirm('Are you sure you want to delete this post?')">Edit</button>
-                            </form>
+                            <li>
+                                <form action="/posts/delete/<%= post._id %>?_method=delete" method="post">
+                                    <button type="submit" class="dropdown-item delete-post-button" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                                </form>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editPostModal-<%= post._id %>">Edit</button>
+                            </li>
                         </ul>
-                    </div>
+                    </div>                    
                 <% } %>
+
+                <div class="modal fade" id="editPostModal-<%= post._id %>" tabindex="-1" role="dialog" aria-labelledby="editPostModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div id="carouselExampleFade-<%= post._id %>" class="carousel slide carousel-fade">
+                                    <div class="carousel-inner">
+                                        <% post.images.forEach((image, imgIndex) => { %>
+                                            <div class="carousel-item <%= imgIndex === 0 ? 'active' : '' %>">
+                                                <img src="<%= image %>" class="d-block w-100" alt="Image <%= imgIndex + 1 %>">
+                                            </div>
+                                        <% }); %>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade-<%= post._id %>" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"><i class="bi bi-caret-left-fill"></i></span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade-<%= post._id %>" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"><i class="bi bi-caret-right-fill"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <form action="/posts/edit/<%= post._id %>?_method=put" method="post">
+                                <div class="modal-body">
+                                    <input type="text" name="title" class="form-control mb-2" placeholder="New Title">
+                                    <input type="text" name="image1" class="form-control mb-2" placeholder="New Image URL 1">
+                                    <input type="text" name="image2" class="form-control mb-2" placeholder="New Image URL 2">
+                                    <input type="text" name="image3" class="form-control mb-2" placeholder="New Image URL 3">
+                                    <textarea name="content" class="form-control" placeholder="New Content"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Edit Post</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
     
-                <div id="carouselExampleIndicators-<%= index %>" class="carousel slide">
+                <div id="carouselExampleFade-<%= index %>" class="carousel slide carousel-fade">
                     <div class="carousel-inner">
                         <% post.images.forEach((image, imgIndex) => { %>
                             <div class="carousel-item <%= imgIndex === 0 ? 'active' : '' %>">
-                                <img src="<%= image %>" class="d-block w-100 carousel-image" alt="Image <%= imgIndex + 1 %>">
+                                <img src="<%= image %>" class="d-block w-100" alt="Image <%= imgIndex + 1 %>">
                             </div>
                         <% }); %>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade-<%= index %>" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"><i class="bi bi-caret-left-fill"></i></span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade-<%= index %>" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden"><i class="bi bi-caret-right-fill"></i></span>
                     </button>
                 </div>
+
     
                 <div class="icons mt-3">
                     <i class="bi bi-heart like-icon"></i>
@@ -105,6 +158,10 @@
                     <% const dateOptions = { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }; %>
                     <p class="posted-date">Posted on: <%= new Date(post.postedDate).toLocaleString('en-US', dateOptions) %></p>
                 <% } %>
+                <% if (post.lastUpdateDate != null) { %>
+                    <% const dateOptions = { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }; %>
+                    <p class="posted-date">Edited on: <%= new Date(post.lastUpdateDate).toLocaleString('en-US', dateOptions) %></p>
+                <% } %>
                 <ul class="comments-list" id="comments-list" style="display: block;">
                     <% post.comments.forEach(comment => { %>
                         <li><%= comment.username %>: <%= comment.comment %></li>
@@ -114,40 +171,6 @@
                     <input type="text" name="comment" placeholder="Write a comment" class="form-control comment-input">
                     <button type="submit" class="btn btn-primary comment-submit">Comment</button>
                 </form>
-            </li>
-            <hr>
-        <% }); %>
-    </ul>
-    <ul class="post-edit" style="display: none;">
-        <% posts.forEach((post, index) => { %>
-            <li class="pt-3">
-                <div id="carouselExampleIndicators-<%= index %>" class="carousel slide">
-                    <div class="carousel-inner">
-                        <% post.images.forEach((image, imgIndex) => { %>
-                            <div class="carousel-item <%= imgIndex === 0 ? 'active' : '' %>">
-                                <img src="<%= image %>" class="d-block w-100 carousel-image" alt="Image <%= imgIndex + 1 %>">
-                            </div>
-                        <% }); %>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden"><i class="bi bi-caret-left-fill"></i></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden"><i class="bi bi-caret-right-fill"></i></span>
-                    </button>
-                </div>
-    
-                <div class="icons mt-3">
-                    <i class="bi bi-heart like-icon"></i>
-                    <i class="bi bi-chat comment-icon" id="toggle-comments"></i>
-                    <i class="bi bi-send"></i>
-                </div>
-                <label for="title">Title: </label>
-                <input id="title" type="text" placeholder="New tile">
-                <label for="content">Content: </label>
-                <input id="content" type="text" placeholder="New content">
             </li>
             <hr>
         <% }); %>

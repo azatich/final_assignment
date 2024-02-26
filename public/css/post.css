@@ -82,7 +82,7 @@ form {
 
 form input[type="text"],
 form textarea {
-    width: 50%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -104,6 +104,28 @@ form button {
 form button:hover {
     background-color: #166fe5;
 }
+.dropdown-menu .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    border-radius: .25rem;
+    text-decoration: none;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-menu .delete-post-button {
+    color: #dc3545; 
+}
 
 .post {
     max-width: 500px;
@@ -119,8 +141,6 @@ form button:hover {
     object-fit: cover;
     object-position: center;
 }
-
-
 .carousel-control-prev,
 .carousel-control-next {
   align-items: center;
@@ -130,7 +150,7 @@ form button:hover {
   background: none;
   border: none;
   opacity: 0;
-  transition: opacity 0.іs; 
+  transition: opacity 0.5s; 
 }
 
 .carousel:hover .carousel-control-prev,
@@ -193,12 +213,4 @@ form button:hover {
 }
 .delete-post-button, .edit-post-button {
     background-color: #fff;
-}
-.post-edit {
-    max-width: 500px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
 }
