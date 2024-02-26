@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleted users</title>
+    <link rel="icon" href="/images/main-fav.png">
+    <link rel="stylesheet" href="/css/adminPanel.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/movie">to Main Page</a>
+        </div>
+        <div class="navbar-menu">
+            <ul>
+                <li><a href="/adminPanel">Users</a></li>
+                <li><a href="/deletedUsers" style="color: #3498db;">Deleted Users</a></li>
+                <li><a href="/lastActive">Last Active</a></li>
+            </ul>
+        </div>
+        <div class="top-right">
+            <% if (username) { %>
+                <%= username %> <a href="/logout">Log out</a>
+            <% } else { %>
+                <a href="/login">Login</a> | <a href="/registration">Register</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <div class="contanier">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Phone</th>
+                    <th>Registration Date</th>
+                    <th>Deletion Date</th>
+                    <th>User ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% deletedUsers.forEach(function(user) { %>
+                    <tr>
+                        <td><%= user.username %></td>
+                        <td><%= user.phone %></td>
+                        <td>
+                            <%= new Date(user.registrationDate).toLocaleDateString() %>
+                            <%= new Date(user.registrationDate).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) %>
+                        </td>
+                        <td>
+                            <%= new Date(user.deletionDate).toLocaleDateString() %>
+                            <%= new Date(user.deletionDate).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) %>
+                        </td>
+                        <td>
+                            <%= user._id %>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>    
+    </div>
+    
+
+</body>
+</html>

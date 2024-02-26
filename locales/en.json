@@ -1,0 +1,16 @@
+{
+    "searchMovie": "Search for a Movie",
+    "searchActor": "Search for an Actor",
+    "posts": "Posts",
+    "adminPanel": "Admin Panel",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "searchMovieTitle": "Search Movie Title ...",
+    "searchFavouriteActor": "Type your favorite actor's name",
+    "search": "Search",
+    "year": "Year",
+    "noActorInfoAvailable": "No actor information available.",
+    "noMoviesFound": "No movies found."
+}
+  

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search Website</title>    
+    <link rel="icon" href="/images/main-fav.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">  
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark p-3">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto ">
+              <li class="nav-item">
+                <a class="nav-link mx-2" style="color: #e50914;"  href="/movie"><%= t('searchMovie') %></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2"href="/actor"><%= t('searchActor') %></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="/posts"><%= t('posts') %></a>
+              </li>
+              <% if (isAdmin) { %>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="/adminPanel"><%= t('adminPanel') %></a>
+                </li>
+            <% }%>
+            </ul>
+          </div> 
+        </div>
+        <div class="top-right">
+            <a href="/change-lang/en">EN</a> | <a href="/change-lang/ru">RU</a>
+            <% if (username) { %>
+                <%= username %>
+            <% } else { %>
+                <a href="/login"> <%= t('login') %> </a> | <a href="/registration"><%= t('register') %></a>
+            <% } %>
+            <a href="/logout"><%= t('logout') %></a>
+        </div>
+    </nav>
+    
+    <div class="wrapper">
+        <div class="search-container d-flex justify-content-center">
+            <form action="/movie" method="post" class="search-element d-flex align-items-center">
+                <input name="movie" type="text" placeholder="<%= t('searchMovieTitle') %>" class="form-control mr-2">
+                <button type="submit" class="btn btn-outline-light"><%= t('search') %></button>
+            </form>
+        </div>
+    
+        <div id="movieContainer" class="movie-container">
+            <% if (movieData && movieData.Search) { %>
+                <% movieData.Search.forEach(function(movie) { %>
+                    <div class="movie">
+                        <h3><%= movie.Title %></h3>
+                        <p>Year: <%= movie.Year %></p>
+                        <img src="<%= movie.Poster %>" alt="Movie Poster">
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="no-movies-found"><%= t('noMoviesFound') %></p>
+            <% } %>
+        </div>    
+    </div>   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>

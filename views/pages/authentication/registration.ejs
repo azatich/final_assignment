@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
+    <link rel="icon" href="/images/main-fav.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <form action="/getDataFromReg" method="post" class="registration-form">
+        <input name="username" type="text" placeholder="Username" required>
+        <input name="phone" type="text" placeholder="Phone number" required>
+        <input name="password" type="password" placeholder="Password" required>
+        <input name="repassword" type="password" placeholder="Retype your password" required>
+        <label for="roleAdmin">Admin</label>
+        <input id="roleAdmin" name="role" type="radio" value="admin">
+        <label for="roleUser">User</label>
+        <input id="roleUser" name="role" type="radio" value="user">
+        <button type="submit">Sign up</button>
+        <span>Already have an account? <a href="./login">Sign in</a></span>
+    </form>
+</body>
+</html>

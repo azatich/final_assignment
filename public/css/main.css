@@ -1,0 +1,165 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://wallpapers.com/images/hd/netflix-background-gs7hjuwvv2g0e9fj.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    z-index: 2;
+    background-color: #141414;
+    opacity: 0.8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.navbar-brand-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;margin: 0;
+}
+.logo p {
+    padding: 0;margin: 0;
+    font-size: 23px;
+    font-weight: bold;
+    color: #E50914;
+    text-align: center;
+}
+.navbar ul li a {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.top-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #ffffff;
+    font-size: 16px; 
+}
+
+.top-right a {
+    color: #ffffff;
+    text-decoration: none; 
+    margin-left: 10px;
+}
+
+.top-right a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-menu ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-menu ul li {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .navbar-brand-container {
+        align-items: center;
+        text-align: center;
+    }
+
+    .navbar-brand-sub {
+        padding-left: 0;
+    }
+}
+.search-container {
+    padding-bottom: 30px;
+}
+
+.search-element input {
+    background-color: #fff;
+    margin-right: 5px;
+}
+
+.search-element button {
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    background-color: #E50914;
+}
+.search-element button:hover {
+    color: #fff;
+    background-color: #6d1217;
+}
+
+@media screen and (max-width: 768px) {
+    .search-container, .search-element {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .search-element input, .search-element button {
+        width: auto;
+    }
+}
+.scroll-enabled {
+    overflow-y: auto;
+}
+.wrapper {
+    z-index: 1;
+    position: relative;
+    overflow-y: auto;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.wrapper a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #E50914;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 40px;
+    margin-bottom: 20px; 
+    transition: background-color 0.3s ease;
+}
+
+.wrapper a:hover {
+    background-color: #6d1217;
+}
+
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: -10px;
+}
+
+
+.movie {
+    width: 350px;
+    margin: 10px;
+    box-sizing: border-box;
+    background-color: #181818;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.movie h3, .movie p {
+    text-align: center;
+}

@@ -1,0 +1,14 @@
+{
+    "searchMovie": "Поиск фильма",
+    "searchActor": "Поиск актера",
+    "posts": "Посты",
+    "adminPanel": "Панель администратора",
+    "login": "Логин",
+    "register": "Регистрация",
+    "logout": "Выход",
+    "searchMovieTitle": "Поиск названия фильма ...",
+    "search": "Поиск",
+    "year": "Год",
+    "noMoviesFound": "Фильмы не найдены."
+}
+  

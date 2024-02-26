@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="/images/main-fav.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark p-3">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto ">
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="/movie">Search for a Movie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="/actor">Search for an Actor</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" style="color: #e50914;" href="/posts">Posts</a>
+            </li>
+              <% if (isAdmin) { %>
+                <li class="nav-item">
+                    <a class="nav-link mx-2" href="/adminPanel">Admin Panel</a>
+                </li>
+            <% }%>
+            </ul>
+          </div>
+        </div>
+        <div class="top-right">
+            <% if (username) { %>
+                <%= username %>
+            <% } else { %>
+                <a href="/login">Login</a> | <a href="/registration">Register</a>
+            <% } %>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <% if (isAdmin) { %>
+        <form action="/posts" method="post">
+            <input type="text" name="title" placeholder="Title">
+            <input type="text" name="image1" placeholder="Image URL 1">
+            <input type="text" name="image2" placeholder="Image URL 2">
+            <input type="text" name="image3" placeholder="Image URL 3">
+            <textarea name="content" placeholder="Content"></textarea>
+            <button type="submit">Add Post</button>
+        </form>
+        
+    <% } %>
+
+    <ul class="post">
+        <% posts.forEach((post, index) => { %>
+            <li class="pt-3">
+                <% if (isAdmin) { %>
+                    <div class="dropdown">
+                        <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical" data-toggle="dropdown"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <form action="/posts/delete/<%= post._id %>?_method=delete" method="post">
+                                <button type="submit" class="dropdown-item delete-post-button" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                            </form>
+                            <form action="/posts/edit/<%= post._id %>" method="post">
+                                <button type="submit" class="dropdown-item edit-post-button" onclick="return confirm('Are you sure you want to delete this post?')">Edit</button>
+                            </form>
+                        </ul>
+                    </div>
+                <% } %>
+    
+                <div id="carouselExampleIndicators-<%= index %>" class="carousel slide">
+                    <div class="carousel-inner">
+                        <% post.images.forEach((image, imgIndex) => { %>
+                            <div class="carousel-item <%= imgIndex === 0 ? 'active' : '' %>">
+                                <img src="<%= image %>" class="d-block w-100 carousel-image" alt="Image <%= imgIndex + 1 %>">
+                            </div>
+                        <% }); %>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"><i class="bi bi-caret-left-fill"></i></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"><i class="bi bi-caret-right-fill"></i></span>
+                    </button>
+                </div>
+    
+                <div class="icons mt-3">
+                    <i class="bi bi-heart like-icon"></i>
+                    <i class="bi bi-chat comment-icon" id="toggle-comments"></i>
+                    <i class="bi bi-send"></i>
+                </div>
+                <h2><%= post.title %></h2>
+                <p><%= post.content %></p>
+                <% if (post.postedDate) { %>
+                    <% const dateOptions = { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }; %>
+                    <p class="posted-date">Posted on: <%= new Date(post.postedDate).toLocaleString('en-US', dateOptions) %></p>
+                <% } %>
+                <ul class="comments-list" id="comments-list" style="display: block;">
+                    <% post.comments.forEach(comment => { %>
+                        <li><%= comment.username %>: <%= comment.comment %></li>
+                    <% }); %>
+                </ul>
+                <form action="/comment/<%= post._id %>" method="post" class="comment-form">
+                    <input type="text" name="comment" placeholder="Write a comment" class="form-control comment-input">
+                    <button type="submit" class="btn btn-primary comment-submit">Comment</button>
+                </form>
+            </li>
+            <hr>
+        <% }); %>
+    </ul>
+    <ul class="post-edit" style="display: none;">
+        <% posts.forEach((post, index) => { %>
+            <li class="pt-3">
+                <div id="carouselExampleIndicators-<%= index %>" class="carousel slide">
+                    <div class="carousel-inner">
+                        <% post.images.forEach((image, imgIndex) => { %>
+                            <div class="carousel-item <%= imgIndex === 0 ? 'active' : '' %>">
+                                <img src="<%= image %>" class="d-block w-100 carousel-image" alt="Image <%= imgIndex + 1 %>">
+                            </div>
+                        <% }); %>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"><i class="bi bi-caret-left-fill"></i></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-<%= index %>" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"><i class="bi bi-caret-right-fill"></i></span>
+                    </button>
+                </div>
+    
+                <div class="icons mt-3">
+                    <i class="bi bi-heart like-icon"></i>
+                    <i class="bi bi-chat comment-icon" id="toggle-comments"></i>
+                    <i class="bi bi-send"></i>
+                </div>
+                <label for="title">Title: </label>
+                <input id="title" type="text" placeholder="New tile">
+                <label for="content">Content: </label>
+                <input id="content" type="text" placeholder="New content">
+            </li>
+            <hr>
+        <% }); %>
+    </ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        const likeIcons = document.querySelectorAll('.like-icon');
+
+        likeIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                if (icon.classList.contains('bi-heart')) {
+                    icon.classList.remove('bi-heart');
+                    icon.classList.add('bi-heart-fill');
+                } else {
+                    icon.classList.remove('bi-heart-fill');
+                    icon.classList.add('bi-heart');
+                }
+
+                icon.style.transition = 'transform 0.3s ease';
+                icon.style.transform = 'scale(1.1)';
+
+                setTimeout(() => {
+                    icon.style.transform = 'scale(1)';
+                }, 300);
+            });
+        });
+    </script>
+    <script>
+        const commentIcons = document.querySelectorAll('.comment-icon');
+    
+        commentIcons.forEach(icon => {
+            icon.addEventListener("click", function() {
+                const parentListItem = icon.closest('li');
+                const commentsList = parentListItem.querySelector('.comments-list');
+    
+                if (commentsList.style.display === "none" || !commentsList.style.display) {
+                    commentsList.style.display = "block";
+                } else {
+                    commentsList.style.display = "none";
+                }
+            });
+        });
+    </script>
+</html>
