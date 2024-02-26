@@ -4,6 +4,40 @@ body {
     margin: 0;
     padding: 0;
 }
+.greeding-title {
+    padding: 0;
+    margin: 0;
+    font-size: 4vw; 
+    font-weight: bold;
+    color: #fff;
+    display: block;
+    margin-top: 4vh;
+    text-align: center;
+}
+.title {
+    font-size: 3vw; 
+    font-weight: bold;
+    color: #ff1622;
+    display: block;
+    margin-top: 3vh;
+    text-align: center;
+}
+img {
+    height: 50px;
+    width: auto;
+}
+@media screen and (max-width: 1200px) {
+    .greeding-title {
+        font-size: 10vw;
+    }
+    .title {
+        font-size: 8vw;
+    }
+    img {
+        height: 100px;
+        width: auto;
+    }
+}
 a {
     color: #fff;
 }
@@ -57,4 +91,7 @@ a {
 
 .registration-form span a:hover {
     text-decoration: underline;
+}
+.roles {
+    padding-bottom: 10px;
 }

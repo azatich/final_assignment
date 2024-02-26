@@ -16,10 +16,12 @@
         <input name="phone" type="text" placeholder="<%= t('phone') %>" required>
         <input name="password" type="password" placeholder="<%= t('password') %>" required>
         <input name="repassword" type="password" placeholder="<%= t('retypePassword') %>" required>
-        <label for="roleAdmin"><%= t('admin') %></label>
-        <input id="roleAdmin" name="role" type="radio" value="admin">
-        <label for="roleUser"><%= t('user') %></label>
-        <input id="roleUser" name="role" type="radio" value="user">
+        <div class="roles">
+            <label for="roleAdmin"><%= t('admin') %></label>
+            <input id="roleAdmin" name="role" type="radio" value="admin">
+            <label for="roleUser"><%= t('user') %></label>
+            <input id="roleUser" name="role" type="radio" value="user">
+        </div>
         <button type="submit"><%= t('signUp') %></button>
         <span><%= t('alreadyHaveAccount') %> <a href="./login"><%= t('signIn') %></a></span>
     </form>
