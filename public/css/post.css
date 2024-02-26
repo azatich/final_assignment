@@ -163,18 +163,45 @@ form button:hover {
   background-image: none;
   content: '';
 }
-
-.icons {
-    color: #000;
-    display: flex;
-    justify-content: start;
-    gap: 10px;
-    margin-bottom: 10px;
+.form-icons {
+    margin: 0;
+}
+.icons .btn-icon {
+    padding: 0 5px 10px 0;
+    background: none;
+    border: none;
 }
 
+.icons .btn-icon:hover {
+    background: transparent;
+}
+
+.icons .btn-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .icons i {
     cursor: pointer;
+    color: #000;
+    font-size: 1.2em;
 }
+.icons i:hover {
+    color: #555; 
+}
+.share-icons {
+    display: flex;
+    align-items: center;
+}
+.share-btn {
+    display: inline-block;
+    margin-right: 10px;
+}
+
 
 .post h2 {
     color: #333;

@@ -5,6 +5,10 @@ const userSchema = new mongoose.Schema({
     username: String, 
     phone: String, 
     password: String, 
+    likedPosts: [{
+        post_id: String,
+        liked: Boolean
+    }],
     registrationDate: { type: Date, default: Date.now },
     lastActive: { type: Date, default: Date.now }
 });

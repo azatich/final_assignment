@@ -27,9 +27,10 @@ router.get('/lastActive', authenticateUser, adminController.getlastActive);
 router.get('/posts', authenticateUser, adminController.getPostPage)
 router.post('/posts', authenticateUser, adminController.addPost)
 router.delete('/posts/delete/:id', authenticateUser, adminController.deletePost);
-router.put('/posts/edit/:id', authenticateUser, adminController.editPost)
+router.put('/posts/edit/:id', authenticateUser, adminController.editPost);
 
-router.post('/comment/:id', authenticateUser, userController.comment)
+router.post('/comment/:id', authenticateUser, userController.comment);
+router.put('/posts/likePost/:id', authenticateUser, userController.likePost);
 
 router.get('/actor', authenticateUser, actorController.getActorsPage)
 router.post('/actor', authenticateUser, actorController.getActorInfo)

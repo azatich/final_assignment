@@ -28,7 +28,7 @@
               <li class="nav-item">
                 <a class="nav-link mx-2" style="color: #e50914;" href="/posts"><%= t('posts') %></a>
             </li>
-              <% if (isAdmin) { %>
+              <% if (user.isAdmin) { %>
                 <li class="nav-item">
                     <a class="nav-link mx-2" href="/adminPanel"><%= t('adminPanel') %></a>
                 </li>
@@ -37,15 +37,15 @@
           </div>
         </div>
         <div class="top-right">
-            <% if (username) { %>
-                <%= username %>
+            <% if (user.username) { %>
+                <%= user.username %>
             <% } else { %>
                 <a href="/login"><%= t('login') %></a> | <a href="/registration"><%= t('register') %></a>
             <% } %>
             <a href="/logout"><%= t('logout') %></a>
         </div>
     </nav>
-    <% if (isAdmin) { %>
+    <% if (user.isAdmin) { %>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPostModal">
             Add Post
         </button>
@@ -73,7 +73,7 @@
     <ul class="post">
         <% posts.forEach((post, index) => { %>
             <li class="pt-3">
-                <% if (isAdmin) { %>
+                <% if (user.isAdmin) { %>
                     <div class="dropdown">
                         <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-three-dots-vertical"></i>
@@ -148,10 +148,30 @@
 
     
                 <div class="icons mt-3">
-                    <i class="bi bi-heart like-icon"></i>
-                    <i class="bi bi-chat comment-icon" id="toggle-comments"></i>
-                    <i class="bi bi-send"></i>
+                    <form class="form-icons" action="/posts/likePost/<%= post._id %>?_method=put" method="post">
+                        <button type="submit" class="btn-icon" aria-label="Like post">
+                            <% let isLiked = user.likedPosts.some(likedPost => likedPost.post_id === post._id.toString()); %>
+                            <i class="bi <%= isLiked ? 'bi-heart-fill' : 'bi-heart' %> like-icon"></i>
+                        </button>
+                    </form>
+                        
+                    <button class="btn-icon">
+                        <i class="bi bi-chat comment-icon" data-toggle="comments"></i>
+                    </button>
+                    
+                    <form class="form-icons" action="">
+                        <button class="btn-icon share-btn facebook" data-platform="facebook">
+                            <i class="bi bi-facebook"></i>
+                        </button>
+                        <button class="btn-icon share-btn twitter" data-platform="twitter">
+                            <i class="bi bi-twitter"></i>
+                        </button>
+                        <button class="btn-icon share-btn linkedin" data-platform="linkedin">
+                            <i class="bi bi-linkedin"></i>
+                        </button>
+                    </form>
                 </div>
+                
                 <h2><%= post.title %></h2>
                 <p><%= post.content %></p>
                 <% if (post.postedDate) { %>
@@ -177,28 +197,8 @@
     </ul>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>
-        const likeIcons = document.querySelectorAll('.like-icon');
 
-        likeIcons.forEach(icon => {
-            icon.addEventListener('click', function() {
-                if (icon.classList.contains('bi-heart')) {
-                    icon.classList.remove('bi-heart');
-                    icon.classList.add('bi-heart-fill');
-                } else {
-                    icon.classList.remove('bi-heart-fill');
-                    icon.classList.add('bi-heart');
-                }
-
-                icon.style.transition = 'transform 0.3s ease';
-                icon.style.transform = 'scale(1.1)';
-
-                setTimeout(() => {
-                    icon.style.transform = 'scale(1)';
-                }, 300);
-            });
-        });
-    </script>
+    
     <script>
         const commentIcons = document.querySelectorAll('.comment-icon');
     

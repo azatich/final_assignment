@@ -14,11 +14,9 @@ const adminController = {
     },
 
     getPostPage: async (req, res) => {
-        username = req.session.user.username;
-        isAdmin = req.session.user.isAdmin;
         try {
             const posts = await Post.find();
-            await res.render('pages/main_page/posts', {username: username, isAdmin: isAdmin, posts: posts})
+            await res.render('pages/main_page/posts', {posts: posts, user: req.session.user})
         } catch (error) {
             res.status(500).json({ message: error.message });
         }

@@ -62,7 +62,8 @@ const logregController = {
                 isAdmin: user.isAdmin,
                 id: user._id,
                 username: user.username,
-                phone: user.phone
+                phone: user.phone,
+                likedPosts: user.likedPosts
             };
             res.redirect('/movie')
         } else {
