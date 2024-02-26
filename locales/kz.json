@@ -1,0 +1,26 @@
+{
+    "signIn": "Кіру",
+    "dontHaveAccount": "Сізде аккаунт жоқ па?",
+    "alreadyHaveAccount": "Аккаунтыңыз бар ма?",
+    "signUp": "Тіркелу",
+    "username": "Қолданушының аты",
+    "password": "Құпия сөз",
+    "phone": "Ұялы телефон номері",
+    "retypePassword": "Құпия сөзді қайта енгізіңіз",
+    "admin": "Админ",
+    "user": "Қолданушы",
+
+    "searchMovie": "Фильмді іздеу",
+    "searchActor": "Актерді іздеу",
+    "posts": "Посттар",
+    "adminPanel": "Админ тақтасы",
+    "login": "Кіру",
+    "register": "Тіркелу",
+    "logout": "Шығу",
+    "searchMovieTitle": "Фильмнің атын іздеу",
+    "searchFavouriteActor": "Сүйікті актеріңіздің аты-жөнін енгізіңіз",
+    "search": "Іздеу",
+    "year": "Жыл",
+    "noActorInfoAvailable": "Актер туралы ақпарат табылмады.",
+    "noMoviesFound": "Фильмдер табылмады."
+}

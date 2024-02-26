@@ -7,7 +7,7 @@ const logregController = {
         if (req.session.user) {
             return res.redirect('/login');
         }
-        await res.render('pages/authentication/registration')
+        await res.render('pages/authentication/registration', {currentLang: req.i18n.language})
     },
 
     register: async (req, res) => {
@@ -48,7 +48,7 @@ const logregController = {
         if (req.session.user) {
             return res.redirect('/movie');
         }
-        await res.render('pages/authentication/login')
+        await res.render('pages/authentication/login', {currentLang: req.i18n.language})
     },
 
     login: async (req, res) => {

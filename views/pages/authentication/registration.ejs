@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <a href="/change-lang/kz" class="<%= currentLang === 'kz' ? 'bold-text' : '' %>">KZ</a>
+    <a href="/change-lang/en" class="<%= currentLang === 'en' ? 'bold-text' : '' %>">EN</a>
+    <a href="/change-lang/ru" class="<%= currentLang === 'ru' ? 'bold-text' : '' %>">RU</a>
     <form action="/getDataFromReg" method="post" class="registration-form">
-        <input name="username" type="text" placeholder="Username" required>
-        <input name="phone" type="text" placeholder="Phone number" required>
-        <input name="password" type="password" placeholder="Password" required>
-        <input name="repassword" type="password" placeholder="Retype your password" required>
-        <label for="roleAdmin">Admin</label>
+        <input name="username" type="text" placeholder="<%= t('username') %>" required>
+        <input name="phone" type="text" placeholder="<%= t('phone') %>" required>
+        <input name="password" type="password" placeholder="<%= t('password') %>" required>
+        <input name="repassword" type="password" placeholder="<%= t('retypePassword') %>" required>
+        <label for="roleAdmin"><%= t('admin') %></label>
         <input id="roleAdmin" name="role" type="radio" value="admin">
-        <label for="roleUser">User</label>
+        <label for="roleUser"><%= t('user') %></label>
         <input id="roleUser" name="role" type="radio" value="user">
-        <button type="submit">Sign up</button>
-        <span>Already have an account? <a href="./login">Sign in</a></span>
+        <button type="submit"><%= t('signUp') %></button>
+        <span><%= t('alreadyHaveAccount') %> <a href="./login"><%= t('signIn') %></a></span>
     </form>
 </body>
 </html>

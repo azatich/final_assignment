@@ -29,14 +29,14 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
-    lang: 'en'
+    lang: 'kz'
 }));
 
 i18next
     .use(Backend)
     .use(middleware.LanguageDetector)
     .init({
-        fallbackLng: 'en',
+        fallbackLng: 'kz',
         backend: {
             loadPath: __dirname + '/locales/{{lng}}.json',
         },
@@ -52,11 +52,10 @@ i18next
     });
 app.use(middleware.handle(i18next));
 app.use((req, res, next) => {
-    if (req.session.lang) {
-      req.i18n.changeLanguage(req.session.lang);
-    }
+    req.session.lang = req.session.lang || 'kz';
+    req.i18n.changeLanguage(req.session.lang);
     next();
-  });
+});
 // To display detected language
 app.use((req, res, next) => {
     console.log('Detected language:', req.language);

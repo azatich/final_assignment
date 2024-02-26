@@ -15,7 +15,7 @@ const movieController = {
             } else if (req.session.movieData) {
                 movieData = req.session.movieData;
             }
-            res.render('pages/main_page/main', { username: username, isAdmin: isAdmin, movieData: movieData, t: req.t, currentLanguage: req.language || 'en', });
+            res.render('pages/main_page/main', { username: username, isAdmin: isAdmin, movieData: movieData, t: req.t, currentLang: req.i18n.language});
         } catch (error) {
             console.error('Error rendering main page:', error);
             res.status(500).send('Error rendering main page.');

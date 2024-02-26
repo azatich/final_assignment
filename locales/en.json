@@ -1,4 +1,15 @@
 {
+    "signIn": "Sign in",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "signUp": "Sign up",
+    "username": "Username",
+    "password": "Password",
+    "phone": "Phone number",
+    "retypePassword": "Re-type your password",
+    "admin": "Admin",
+    "user": "User",
+
     "searchMovie": "Search for a Movie",
     "searchActor": "Search for an Actor",
     "posts": "Posts",

@@ -20,17 +20,17 @@
           <div class=" collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ms-auto ">
               <li class="nav-item">
-                <a class="nav-link mx-2" href="/movie">Search for a Movie</a>
+                <a class="nav-link mx-2" href="/movie"><%= t('searchMovie') %></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link mx-2" href="/actor">Search for an Actor</a>
+                <a class="nav-link mx-2" href="/actor"><%= t('searchActor') %></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link mx-2" style="color: #e50914;" href="/posts">Posts</a>
+                <a class="nav-link mx-2" style="color: #e50914;" href="/posts"><%= t('posts') %></a>
             </li>
               <% if (isAdmin) { %>
                 <li class="nav-item">
-                    <a class="nav-link mx-2" href="/adminPanel">Admin Panel</a>
+                    <a class="nav-link mx-2" href="/adminPanel"><%= t('adminPanel') %></a>
                 </li>
             <% }%>
             </ul>
@@ -40,9 +40,9 @@
             <% if (username) { %>
                 <%= username %>
             <% } else { %>
-                <a href="/login">Login</a> | <a href="/registration">Register</a>
+                <a href="/login"><%= t('login') %></a> | <a href="/registration"><%= t('register') %></a>
             <% } %>
-            <a href="/logout">Logout</a>
+            <a href="/logout"><%= t('logout') %></a>
         </div>
     </nav>
     <% if (isAdmin) { %>

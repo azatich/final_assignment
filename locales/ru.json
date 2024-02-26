@@ -1,4 +1,15 @@
 {
+    "signIn": "Логин",
+    "dontHaveAccount": "У вас еще нет аккаунта?",
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "signUp": "Регистрация",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "phone": "Номер телефона",
+    "retypePassword": "Повторно введите свой пароль",
+    "admin": "Админ",
+    "user": "Пользователь",
+
     "searchMovie": "Поиск фильма",
     "searchActor": "Поиск актера",
     "posts": "Посты",
@@ -7,8 +18,10 @@
     "register": "Регистрация",
     "logout": "Выход",
     "searchMovieTitle": "Поиск названия фильма ...",
+    "searchFavouriteActor": "Введите имя вашего любимого актера",
     "search": "Поиск",
     "year": "Год",
+    "noActorInfoAvailable": "Информация об актере отсутствует.",
     "noMoviesFound": "Фильмы не найдены."
 }
   

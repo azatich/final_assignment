@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <a href="/change-lang/kz" class="<%= currentLang === 'kz' ? 'bold-text' : '' %>">KZ</a>
+    <a href="/change-lang/en" class="<%= currentLang === 'en' ? 'bold-text' : '' %>">EN</a>
+    <a href="/change-lang/ru" class="<%= currentLang === 'ru' ? 'bold-text' : '' %>">RU</a>
     <form action="/getDataFromLog" method="post" class="registration-form">
-        <input name="username" type="text" placeholder="Username" required>
-        <input name="password" type="password" placeholder="Password" required>
+        <input name="username" type="text" placeholder="<%= t('username') %>" required>
+        <input name="password" type="password" placeholder="<%= t('password') %>" required>
 
-        <button type="submit">Sign in</button>
-        <span>Don't have an account? <a href="/registration">Sign up</a></span>
+        <button type="submit"><%= t('signIn') %></button>
+        <span><%= t('dontHaveAccount') %><a href="/registration"><%= t('signUp') %></a></span>
     </form>
 </body>
 </html>
