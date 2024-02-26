@@ -51,8 +51,6 @@ router.get('/change-lang/:lang', (req, res) => {
     });
 });
 
-
-
 router.all('*', authenticateUser);
 
 module.exports = router;
