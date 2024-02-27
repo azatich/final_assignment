@@ -30,7 +30,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
 }));
 
 i18next
