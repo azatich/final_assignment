@@ -16,6 +16,10 @@ const actorController = {
 
     getActorInfo: async (req, res) => {
         const { name } = req.body;
+        if (name ===  undefined || name === null) {
+            res.status(400).json({ message: 'Please enter an actor name.' });
+            return;
+        }
         const searchUrl = `https://api.themoviedb.org/3/search/person?api_key=${process.env.MOVIE_ACTOR_API_KEY}&query=${encodeURIComponent(name)}`;
 
         try {

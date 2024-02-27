@@ -31,7 +31,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
-    lang: 'kz'
 }));
 
 i18next
@@ -40,7 +39,7 @@ i18next
     .init({
         fallbackLng: 'kz',
         backend: {
-            loadPath: __dirname + '/locales/{{lng}}.json',
+            loadPath: __dirname + '/locales/{{lng}}.json',z
         },
         detection: {
             lookupSession: 'lang',
@@ -58,11 +57,6 @@ app.use((req, res, next) => {
     req.i18n.changeLanguage(req.session.lang);
     next();
 });
-// To display detected language
-// app.use((req, res, next) => {
-//     console.log('Detected language:', req.language);
-//     next();
-// });
 
 app.use('/', router);
 app.use((req, res, next) => {
