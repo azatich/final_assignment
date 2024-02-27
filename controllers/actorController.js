@@ -40,7 +40,7 @@ const actorController = {
                         return { actorDetails, movies };
                     }));
                     req.session.actorDetails = actorDetails;
-                    res.redirect(`/actor`);
+                    await res.redirect(`/actor`);
                 } else {
                     res.status(404).json({ message: 'No actor found with that name.' });
                 }
