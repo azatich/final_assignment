@@ -34,8 +34,8 @@ router.put('/posts/edit/:id', authenticateUser, adminController.editPost);
 router.post('/comment/:id', authenticateUser, userController.comment);
 router.put('/posts/likePost/:id', authenticateUser, userController.likePost);
 
-router.get('/actor', authenticateUser, actorController.getActorsPage)
-router.post('/actor', actorController.getActorInfo)
+router.get('/actor', actorController.getActorsPage)
+router.post('/actor', authenticateUser, actorController.getActorInfo)
 
 router.get('/change-lang/:lang', (req, res) => {
     const selectedLang = req.params.lang;
