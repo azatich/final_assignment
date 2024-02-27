@@ -18,10 +18,6 @@ const connectDB = async () => {
         process.exit(1);
     }
 };
-const store = {
-    uri: process.env.MONGO_URI,
-    collection: 'sessions'
-}
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -31,10 +27,9 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(session({
-    store: store,
     secret: process.env.SESSION_SECRET_KEY,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
 }));
 
