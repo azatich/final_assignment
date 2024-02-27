@@ -65,6 +65,9 @@ app.use((req, res, next) => {
 // });
 
 app.use('/', router);
+app.use((req, res, next) => {
+    res.json({message: "Page Not Found"})
+});
 
 connectDB().then(() => {
     app.listen(PORT, () => {

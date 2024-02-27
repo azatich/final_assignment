@@ -7,6 +7,8 @@ const { adminController } = require('../controllers/adminController')
 const { actorController } = require('../controllers/actorController')
 const { userController } = require('../controllers/userController')
 
+router.get('/', authenticateUser);
+
 router.get('/movie', authenticateUser, movieController.getMoviePage)
 router.post('/movie', authenticateUser, movieController.getMovieData)
 
@@ -50,7 +52,5 @@ router.get('/change-lang/:lang', (req, res) => {
         });
     });
 });
-
-router.all('*', authenticateUser);
 
 module.exports = router;
