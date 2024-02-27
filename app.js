@@ -39,7 +39,7 @@ i18next
     .init({
         fallbackLng: 'kz',
         backend: {
-            loadPath: __dirname + '/locales/{{lng}}.json',z
+            loadPath: __dirname + '/locales/{{lng}}.json',
         },
         detection: {
             lookupSession: 'lang',
