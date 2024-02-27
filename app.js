@@ -3,7 +3,6 @@ const i18next = require('i18next');
 const middleware = require('i18next-http-middleware');
 const Backend = require('i18next-node-fs-backend');
 const session = require('express-session');
-const MongodbSession = require('connect-mongodb-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('./routes/router');
