@@ -190,3 +190,26 @@ body {
 .card-title, .card-text {
     color: #fff;
 }
+.films-title {
+    padding-top: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.films-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.films-list li {
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.films-list li:last-child {
+    margin-bottom: 0; 
+}
+

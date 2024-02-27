@@ -23,6 +23,8 @@
     "year": "Год",
     "noActorInfoAvailable": "Информация об актере отсутствует.",
     "noMoviesFound": "Фильмы не найдены.",
+    "dateOfBirth": "Дата рождения",
+    "films": "Фильмы",
 
     "addPost": "Добавить пост",
     "delete": "Удалить",

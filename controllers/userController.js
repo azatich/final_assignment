@@ -24,8 +24,6 @@ const userController = {
         try {
             const user = await User.findOne({username: username});
             const index = user.likedPosts.findIndex(likedPost => likedPost.post_id === postId);
-            console.log(index);
-            console.log(user.likedPosts);
 
             if (index === -1) {
                 user.likedPosts.push({ post_id: postId, liked: true });

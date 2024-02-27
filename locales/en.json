@@ -23,6 +23,8 @@
     "year": "Year",
     "noActorInfoAvailable": "No actor information available.",
     "noMoviesFound": "No movies found.",
+    "dateOfBirth": "Date of Birth",
+    "films": "Films",
 
     "addPost": "Add Post",
     "delete": "Delete",
