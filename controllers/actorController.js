@@ -4,10 +4,11 @@ const actorController = {
     getActorsPage: async (req, res) => {
         try {
             let actorDetails = null;
-            if (req.session.actorDetails) {
+            if (req.query.actorDetails) {
+                actorDetails = JSON.parse(decodeURIComponent(req.query.actorDetails));
+            } else if (req.session.actorDetails) {
                 actorDetails = req.session.actorDetails;
             }
-
             res.render('pages/main_page/actors', { user: req.session.user, actorInfo: actorDetails, currentLang: req.i18n.language });
         } catch (error) {
             console.error('Error rendering actors page:', error.message);
@@ -34,7 +35,7 @@ const actorController = {
                             return { actorDetails, movies };
                         }));
                         req.session.actorDetails = actorDetails;
-                        res.redirect('/actor');
+                        res.redirect(`/actor?actorDetails=${encodeURIComponent(JSON.stringify(actorDetails))}`);
                     } else {
                         res.status(404).json({ message: 'No actor found with that name.' });
                     }

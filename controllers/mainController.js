@@ -24,7 +24,12 @@ const movieController = {
         try {
             const response = await fetch(movieURL);
             const movieData = await response.json();
-            res.redirect(`/movie?movieData=${encodeURIComponent(JSON.stringify(movieData))}`);
+            if (movieData && movieData.Search && movieData.Search.length > 0) {
+                res.redirect(`/movie?movieData=${encodeURIComponent(JSON.stringify(movieData))}`);
+            } else {
+                res.status(404).json({ message: 'No movie found with that name.' });
+            }
+            
         } catch (error) {   
             console.error('Error:', error);
             res.status(500).send('Error fetching movie data.');
