@@ -7,6 +7,8 @@ const { adminController } = require('../controllers/adminController')
 const { actorController } = require('../controllers/actorController')
 const { userController } = require('../controllers/userController')
 
+router.get('/', authenticateUser);
+
 router.get('/movie', authenticateUser, movieController.getMoviePage)
 router.post('/movie', movieController.getMovieData)
 

@@ -60,11 +60,7 @@ app.use((req, res, next) => {
 
 app.use('/', router);
 app.use((req, res, next) => {
-    if (req.originalUrl === '/') {
-        res.redirect('/login');
-    } else {
-        res.status(404).render('pages/error_page/error');
-    }
+    res.status(404).render('pages/error_page/error');
 });
 
 connectDB().then(() => {
