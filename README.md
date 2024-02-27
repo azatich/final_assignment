@@ -9,6 +9,10 @@ Before running the project don't forget to run in console: npm i and create .env
     MOVIE_ACTOR_API_KEY = 40f4fffa84de3e45c7dcf179bf3d9c1e
     SESSION_SECRET_KEY = qwerty-secret
 
+Then you can run the program by:
+
+    npm start
+
 *Note:
     Sometimes Cyclic(deploy) session is not working as expected.
     However, in localhost everything works fine.
