@@ -27,7 +27,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(session({
-    secret: 'qwertyuiopasdfghjklzxcvbnm',
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
