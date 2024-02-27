@@ -3,10 +3,7 @@ const movieController = {
     getMoviePage: async (req, res) => {
         try {
             let movieData = null;
-            if (req.query.movieData) {
-                movieData = JSON.parse(decodeURIComponent(req.query.movieData));
-                req.session.movieData = movieData;
-            } else if (req.session.movieData) {
+            if (req.session.movieData) {
                 movieData = req.session.movieData;
             }
             res.render('pages/main_page/main', { user: req.session.user, movieData: movieData, t: req.t, currentLang: req.i18n.language});
@@ -25,7 +22,8 @@ const movieController = {
             const response = await fetch(movieURL);
             const movieData = await response.json();
             if (movieData && movieData.Search && movieData.Search.length > 0) {
-                res.redirect(`/movie?movieData=${encodeURIComponent(JSON.stringify(movieData))}`);
+                req.session.movieData = movieData;
+                res.redirect(`/movie`);
             } else {
                 res.status(404).json({ message: 'No movie found with that name.' });
             }
