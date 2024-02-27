@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const actorController = {
+    
     getActorsPage: async (req, res) => {
         try {
             let actorDetails = null;
@@ -33,7 +34,8 @@ const actorController = {
                         const actorDetails = await Promise.all(filteredActors.map(async actor => {
                             const actorId = actor.id;
                             const actorDetails = await fetchActorDetails(actorId);
-                            return { actorDetails };
+                            const movies = await fetchActorMovies(actorId);
+                            return { actorDetails, movies };
                         }));
                         req.session.actorDetails = actorDetails;
                         res.redirect(`/actor`);
@@ -73,6 +75,27 @@ async function fetchActorDetails(actorId) {
     } catch (error) {
         console.error('Error fetching actor details:', error.message);
         throw new Error('Failed to fetch actor details.');
+    }
+}
+
+async function fetchActorMovies(actorId) {
+    const moviesUrl = `https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${process.env.MOVIE_ACTOR_API_KEY}&language=en-US`;
+
+    try {
+        const moviesResponse = await axios.get(moviesUrl);
+
+        if (moviesResponse.status === 200) {
+            const moviesList = moviesResponse.data.cast.map(movie => ({
+                title: movie.title,
+                releaseDate: movie.release_date
+            }));
+            return moviesList;
+        } else {
+            throw new Error(`Failed to fetch actor movies. Status: ${moviesResponse.status}`);
+        }
+    } catch (error) {
+        console.error('Error fetching actor movies:', error.message);
+        throw new Error('Failed to fetch actor movies.');
     }
 }
 

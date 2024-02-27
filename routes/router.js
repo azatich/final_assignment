@@ -45,7 +45,7 @@ router.get('/change-lang/:lang', (req, res) => {
         }
 
         req.session.save(() => {
-            const referrer = req.get('Referrer');
+            const referrer = req.get('Referrer') || '/'
             res.redirect(referrer);
         });
     });

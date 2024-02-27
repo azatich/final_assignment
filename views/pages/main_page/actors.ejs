@@ -74,6 +74,18 @@
                             <% } else { %>  
                                 <img src="/images/no-picture-available.jpg" class="card-img-top" alt="Actor Image">
                             <% } %>
+                            <div>
+                                <% if (actor.movies && actor.movies.length > 0) { %>
+                                    <p class="films-title"><strong><%= t('films') %>:</strong></p>
+                                    <ul class="films-list">
+                                        <% actor.movies.slice(0, 4).forEach(movie => { %>
+                                            <li><%= movie.title %> (<%= movie.releaseDate %>)</li>
+                                        <% }); %>
+                                    </ul>
+                                <% } else { %>
+                                    <p><%= t('noMoviesAvailable') %></p>
+                                <% } %>
+                            </div>
                         </div>
                     </div>
                 <% }); %>
