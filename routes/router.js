@@ -8,7 +8,7 @@ const { actorController } = require('../controllers/actorController')
 const { userController } = require('../controllers/userController')
 
 router.get('/movie', authenticateUser, movieController.getMoviePage)
-router.post('/movie', authenticateUser, movieController.getMovieData)
+router.post('/movie', movieController.getMovieData)
 
 router.get('/registration', logregController.getRegistrationPage)
 router.post('/getDataFromReg', logregController.register);
@@ -33,7 +33,7 @@ router.post('/comment/:id', authenticateUser, userController.comment);
 router.put('/posts/likePost/:id', authenticateUser, userController.likePost);
 
 router.get('/actor', authenticateUser, actorController.getActorsPage)
-router.post('/actor', authenticateUser, actorController.getActorInfo)
+router.post('/actor', actorController.getActorInfo)
 
 router.get('/change-lang/:lang', (req, res) => {
     const selectedLang = req.params.lang;
