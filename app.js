@@ -66,7 +66,7 @@ app.use((req, res, next) => {
 
 app.use('/', router);
 app.use((req, res, next) => {
-    res.json({message: "Page Not Found"})
+   res.redirect('/login')
 });
 
 connectDB().then(() => {
